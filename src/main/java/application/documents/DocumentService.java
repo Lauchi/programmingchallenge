@@ -36,7 +36,7 @@ public class DocumentService {
         documentRepository.update(documentUpdated);
     }
 
-    public Document GetDocument(GetDocumentCommand command) {
+    public Document GetDocument(GetDocumentQuerry command) {
         DocumentId documentId = parseDocumentIdAndThrowIfInvalid(command.getDocumentId());
 
         return documentRepository.get(documentId).getEntity();
