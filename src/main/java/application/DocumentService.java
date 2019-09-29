@@ -1,10 +1,9 @@
 package application;
 
 import domain.documents.Document;
+import domain.documents.DocumentId;
 import domain.documents.DocumentRepository;
 import domain.documents.DocumentType;
-
-import java.util.UUID;
 
 public class DocumentService {
     private DocumentRepository documentRepository;
@@ -13,9 +12,10 @@ public class DocumentService {
         this.documentRepository = documentRepository;
     }
 
-    public UUID CreateDocument(CreateDocumentCommand command) {
+    public DocumentId CreateDocument(CreateDocumentCommand command) {
         DocumentType documentType = DocumentType.Create(command.getDocumentType()).getEntity();
-        Document document = Document.Create(command.getDocumentId(), command.getContent(), documentType).getEntity();
+        DocumentId documentId = DocumentId.Create(command.getDocumentId()).getEntity();
+        Document document = Document.Create(documentId, command.getContent(), documentType).getEntity();
         documentRepository.Save(document);
         return document.getDocumentId();
     }

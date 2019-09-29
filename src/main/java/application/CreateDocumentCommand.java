@@ -1,13 +1,11 @@
 package application;
 
-import java.util.UUID;
-
 public class CreateDocumentCommand {
-    private UUID documentId;
+    private String documentId;
     private String content;
     private String type;
 
-    public CreateDocumentCommand(UUID documentId, String content, String documentType) {
+    public CreateDocumentCommand(String documentId, String content, String documentType) {
         this.documentId = documentId;
         this.content = content;
         this.type = documentType;
@@ -21,7 +19,7 @@ public class CreateDocumentCommand {
         return type;
     }
 
-    public UUID getDocumentId() {
+    public String getDocumentId() {
         return documentId;
     }
 }
