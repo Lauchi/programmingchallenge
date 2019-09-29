@@ -55,6 +55,8 @@ class DocumentServiceTest {
                 "newContent",
                 DocumentHelpers.ValidDocumentType().getDocumentType());
 
-        Assertions.assertThrows(NotFoundException.class, () -> documentService.UpdateDocument(command));
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            documentService.UpdateDocument(command);
+        });
     }
 }

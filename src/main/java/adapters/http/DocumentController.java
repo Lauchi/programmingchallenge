@@ -4,7 +4,6 @@ import application.documents.*;
 import domain.documents.Document;
 
 import java.io.*;
-import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
@@ -18,7 +17,7 @@ public class DocumentController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
         String documentIdRaw = getDocumentIDRaw(request);
         String documentTypeRaw = getDocumentTypeRaw(request);
@@ -36,7 +35,7 @@ public class DocumentController extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
         String documentIdRaw = getDocumentIDRaw(request);
 
@@ -51,7 +50,7 @@ public class DocumentController extends HttpServlet {
 
     @Override
     public void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
         String documentIdRaw = getDocumentIDRaw(request);
         String documentTypeRaw = getDocumentTypeRaw(request);
@@ -64,8 +63,7 @@ public class DocumentController extends HttpServlet {
     }
 
     @Override
-    public void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
 
         String documentIdRaw = getDocumentIDRaw(request);
 
