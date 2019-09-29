@@ -1,6 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="logmein">
+  <artifact type="exploded-war" build-on-make="true" name="logmein">
     <output-path>$PROJECT_DIR$/out/artifacts/logmein</output-path>
-    <root id="root" />
+    <root id="root">
+      <element id="module-output" name="programmingchallenge" />
+    </root>
   </artifact>
 </component>

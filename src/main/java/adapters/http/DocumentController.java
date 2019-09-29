@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet(urlPatterns = {"/storage/documents/*"})
+@WebServlet("/storage/documents/*")
 public class DocumentController extends HttpServlet {
 
     @Inject
