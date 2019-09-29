@@ -25,10 +25,8 @@ class DocumentServiceTest {
     @Test
     void createDocument() {
         DocumentId documentIdInput = DocumentHelpers.ValidDocumentId();
-        CreateDocumentCommand command = new CreateDocumentCommand(
-                documentIdInput.getDocumentId(),
-                "content",
-                DocumentHelpers.ValidDocumentType().getDocumentType());
+        CreateDocumentCommand command = getCreateDocumentCommand(documentIdInput);
+
         Document documentCreated = documentService.CreateDocument(command);
 
         Assertions.assertEquals(documentCreated.getDocumentId(), documentIdInput);
@@ -37,10 +35,7 @@ class DocumentServiceTest {
     @Test
     void createDocumentTwice() {
         DocumentId documentIdInput = DocumentHelpers.ValidDocumentId();
-        CreateDocumentCommand command = new CreateDocumentCommand(
-                documentIdInput.getDocumentId(),
-                "content",
-                DocumentHelpers.ValidDocumentType().getDocumentType());
+        CreateDocumentCommand command = getCreateDocumentCommand(documentIdInput);
 
         documentService.CreateDocument(command);
 
@@ -58,5 +53,12 @@ class DocumentServiceTest {
         Assertions.assertThrows(NotFoundException.class, () -> {
             documentService.UpdateDocument(command);
         });
+    }
+
+    private CreateDocumentCommand getCreateDocumentCommand(DocumentId documentIdInput) {
+        return new CreateDocumentCommand(
+                documentIdInput.getDocumentId(),
+                "content",
+                DocumentHelpers.ValidDocumentType().getDocumentType());
     }
 }
