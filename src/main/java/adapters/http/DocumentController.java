@@ -8,7 +8,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/storage/documents")
+@WebServlet("/storage/documents/*")
 public class DocumentController extends HttpServlet {
     private DocumentService documentService;
 
@@ -90,7 +90,7 @@ public class DocumentController extends HttpServlet {
     }
 
     private String getDocumentIDRaw(HttpServletRequest request) {
-        String parameterNameDocumentID = "documentId";
-        return request.getParameter(parameterNameDocumentID);
+        String documentIdRaw = request.getPathInfo();
+        return request.getParameter(documentIdRaw);
     }
 }
