@@ -16,6 +16,7 @@ public class DocumentController extends HttpServlet {
         this.documentService = documentService;
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -33,6 +34,7 @@ public class DocumentController extends HttpServlet {
         writer.println(document.getDocumentId().getDocumentId());
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -47,6 +49,7 @@ public class DocumentController extends HttpServlet {
         writer.println(document.getContent());
     }
 
+    @Override
     public void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -60,6 +63,7 @@ public class DocumentController extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 
+    @Override
     public void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
