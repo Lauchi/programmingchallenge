@@ -1,10 +1,12 @@
-package application;
+package application.documents;
 
 import domain.ValidationResult;
 import domain.documents.Document;
 import domain.documents.DocumentId;
 import domain.documents.DocumentRepository;
 import domain.documents.DocumentType;
+
+import javax.ws.rs.NotFoundException;
 
 public class DocumentService {
     private DocumentRepository documentRepository;
@@ -22,8 +24,10 @@ public class DocumentService {
     }
 
     public void UpdateDocument(UpdateDocumentCommand command) {
-        DocumentId documentId = DocumentId.Create(command.getDocumentId()).getEntity();
-        Document document = documentRepository.Get(documentId);
+        ValidationResult<DocumentId> documentIdResult = DocumentId.Create(command.getDocumentId());
+        if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
+
+        Document document = documentRepository.Get(documentIdResult.getEntity()).getEntity();
         DocumentType documentType = DocumentType.Create(command.getDocumentType()).getEntity();
         ValidationResult<Document> documentValidationResult = document.updateDocument(command.getDocumentContent(), documentType);
         Document documentUpdated = documentValidationResult.getEntity();
@@ -31,7 +35,9 @@ public class DocumentService {
     }
 
     public Document GetDocument(GetDocumentCommand command) {
-        DocumentId documentId = DocumentId.Create(command.getDocumentId()).getEntity();
-        return documentRepository.Get(documentId);
+        ValidationResult<DocumentId> documentIdResult = DocumentId.Create(command.getDocumentId());
+        if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
+
+        return documentRepository.Get(documentIdResult.getEntity()).getEntity();
     }
 }

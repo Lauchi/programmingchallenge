@@ -1,9 +1,9 @@
 package adapters.http;
 
-import application.CreateDocumentCommand;
-import application.DocumentService;
-import application.GetDocumentCommand;
-import application.UpdateDocumentCommand;
+import application.documents.CreateDocumentCommand;
+import application.documents.DocumentService;
+import application.documents.GetDocumentCommand;
+import application.documents.UpdateDocumentCommand;
 import domain.documents.Document;
 import domain.documents.DocumentId;
 

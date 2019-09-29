@@ -1,9 +1,8 @@
 package application;
 
 import adapters.persistence.memory.DocumentRepositoryImpl;
+import application.documents.DocumentService;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentServiceTest {
 

@@ -1,4 +1,4 @@
-package application;
+package application.documents;
 
 public class CreateDocumentCommand {
     private String documentId;

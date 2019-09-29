@@ -1,4 +1,4 @@
-package application;
+package application.documents;
 
 public class GetDocumentCommand {
     private String documentId;

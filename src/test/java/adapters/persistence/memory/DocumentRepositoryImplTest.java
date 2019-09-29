@@ -14,7 +14,7 @@ class DocumentRepositoryImplTest {
         DocumentRepositoryImpl documentRepository = new DocumentRepositoryImpl();
         Document document = DocumentHelpers.ValidDocument();
         documentRepository.Save(document);
-        Document get = documentRepository.Get(document.getDocumentId());
+        Document get = documentRepository.Get(document.getDocumentId()).getEntity();
 
         Assertions.assertEquals(document.getDocumentId(), get.getDocumentId());
         Assertions.assertEquals(document.getContent(), get.getContent());

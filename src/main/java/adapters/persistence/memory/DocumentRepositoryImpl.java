@@ -1,5 +1,7 @@
 package adapters.persistence.memory;
 
+import domain.RepositoryResult;
+import domain.RepositoryStatus;
 import domain.documents.Document;
 import domain.documents.DocumentId;
 import domain.documents.DocumentRepository;
@@ -11,18 +13,24 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     private List<Document> documents = new ArrayList<>();
 
     @Override
-    public void Save(Document document) {
+    public RepositoryResult<Document> Save(Document document) {
+        RepositoryResult<Document> get = Get(document.getDocumentId());
+        if (!get.isNotFound()) {
+            return new RepositoryResult<>(RepositoryStatus.allreadyExists);
+        }
+
         documents.add(document);
+        return new RepositoryResult<>(document);
     }
 
     @Override
-    public Document Get(DocumentId documentId) {
+    public RepositoryResult<Document> Get(DocumentId documentId) {
         for (Document document : documents) {
             if (document.getDocumentId().equals(documentId)) {
-                return document;
+                return new RepositoryResult<>(document);
             }
         }
 
-        return null;
+        return new RepositoryResult<>(RepositoryStatus.notFound);
     }
 }
