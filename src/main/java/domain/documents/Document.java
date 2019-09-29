@@ -2,24 +2,23 @@ package domain.documents;
 
 import domain.ValidationResult;
 
-import java.util.UUID;
-
 public class Document {
-    private UUID documentId;
+    private DocumentId documentId;
     private String content;
     private DocumentType documentType;
 
-    public Document(UUID documentId, String content, DocumentType documentType) {
+    private Document(DocumentId documentId, String content, DocumentType documentType) {
         this.documentId = documentId;
         this.content = content;
         this.documentType = documentType;
     }
 
-    public static ValidationResult<Document> Create(UUID documentId, String content, DocumentType documentType) {
-        return new ValidationResult(new Document(documentId, content, documentType));
+    public static ValidationResult<Document> Create(DocumentId documentId, String content, DocumentType documentType) {
+        ValidationResult<Document> documentValidationResult = new ValidationResult<>(new Document(documentId, content, documentType));
+        return documentValidationResult;
     }
 
-    public UUID getDocumentId() {
+    public DocumentId getDocumentId() {
         return documentId;
     }
 

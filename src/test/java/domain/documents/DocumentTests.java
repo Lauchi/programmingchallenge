@@ -1,8 +1,6 @@
 package domain.documents;
 
 import domain.ValidationResult;
-import domain.documents.Document;
-import domain.documents.DocumentType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +11,7 @@ class DocumentTests {
     @Test
     public void testCreateDocument() {
         DocumentType pdf = DocumentType.Create("pdf").getEntity();
-        Document.Create(UUID.randomUUID(), "Content von body", pdf);
+        Document.Create(new DocumentId(UUID.randomUUID()), "Content von body", pdf);
     }
 
     @Test
