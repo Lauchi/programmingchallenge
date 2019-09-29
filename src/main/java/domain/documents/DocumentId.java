@@ -12,7 +12,7 @@ public class DocumentId {
         this.documentId = documentId;
     }
 
-    public static ValidationResult<DocumentId> Create(String id) {
+    public static ValidationResult<DocumentId> create(String id) {
         String regex = "^[a-zA-Z0-9]{20}+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(id);

@@ -15,7 +15,7 @@ public class Document {
         this.isDeleted = isDeleted;
     }
 
-    public static ValidationResult<Document> Create(DocumentId documentId, String content, DocumentType documentType) {
+    public static ValidationResult<Document> create(DocumentId documentId, String content, DocumentType documentType) {
         ValidationResult<Document> documentValidationResult = new ValidationResult<>(new Document(documentId, content, documentType, true));
         return documentValidationResult;
     }

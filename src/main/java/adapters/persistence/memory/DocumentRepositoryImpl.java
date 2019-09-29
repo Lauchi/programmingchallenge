@@ -13,8 +13,8 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     private List<Document> documents = new ArrayList<>();
 
     @Override
-    public RepositoryResult<Document> Save(Document document) {
-        RepositoryResult<Document> get = Get(document.getDocumentId());
+    public RepositoryResult<Document> save(Document document) {
+        RepositoryResult<Document> get = get(document.getDocumentId());
         if (!get.isNotFound()) {
             return new RepositoryResult<>(RepositoryStatus.allreadyExists);
         }
@@ -24,9 +24,9 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     }
 
     @Override
-    public RepositoryResult<Document> Get(DocumentId documentId) {
+    public RepositoryResult<Document> get(DocumentId documentId) {
         for (Document document : documents) {
-            if (document.getDocumentId().equals(documentId)) {
+            if (document.getDocumentId().equals(documentId) && !document.isDeleted()) {
                 return new RepositoryResult<>(document);
             }
         }

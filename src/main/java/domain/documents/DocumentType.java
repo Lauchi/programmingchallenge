@@ -9,7 +9,7 @@ public class DocumentType {
         this.documentType = documentType;
     }
 
-    public static ValidationResult<DocumentType> Create(String type) {
+    public static ValidationResult<DocumentType> create(String type) {
         if (type == null || type.isEmpty()) return new ValidationResult(DocumentErrors.DocumentTypeCanNotBeNullOrEmpty());
         return new ValidationResult(new DocumentType(type));
     }

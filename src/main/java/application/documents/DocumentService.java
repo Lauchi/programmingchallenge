@@ -1,6 +1,5 @@
 package application.documents;
 
-import domain.RepositoryResult;
 import domain.ValidationResult;
 import domain.documents.Document;
 import domain.documents.DocumentId;
@@ -17,39 +16,39 @@ public class DocumentService {
     }
 
     public DocumentId CreateDocument(CreateDocumentCommand command) {
-        DocumentType documentType = DocumentType.Create(command.getDocumentType()).getEntity();
-        DocumentId documentId = DocumentId.Create(command.getDocumentId()).getEntity();
-        Document document = Document.Create(documentId, command.getContent(), documentType).getEntity();
-        documentRepository.Save(document);
+        DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
+        DocumentId documentId = DocumentId.create(command.getDocumentId()).getEntity();
+        Document document = Document.create(documentId, command.getContent(), documentType).getEntity();
+        documentRepository.save(document);
         return document.getDocumentId();
     }
 
     public void UpdateDocument(UpdateDocumentCommand command) {
-        ValidationResult<DocumentId> documentIdResult = DocumentId.Create(command.getDocumentId());
+        ValidationResult<DocumentId> documentIdResult = DocumentId.create(command.getDocumentId());
         if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
 
-        Document document = documentRepository.Get(documentIdResult.getEntity()).getEntity();
-        DocumentType documentType = DocumentType.Create(command.getDocumentType()).getEntity();
+        Document document = documentRepository.get(documentIdResult.getEntity()).getEntity();
+        DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
         ValidationResult<Document> documentValidationResult = document.updateDocument(command.getDocumentContent(), documentType);
         Document documentUpdated = documentValidationResult.getEntity();
-        documentRepository.Save(documentUpdated);
+        documentRepository.save(documentUpdated);
     }
 
     public Document GetDocument(GetDocumentCommand command) {
-        ValidationResult<DocumentId> documentIdResult = DocumentId.Create(command.getDocumentId());
+        ValidationResult<DocumentId> documentIdResult = DocumentId.create(command.getDocumentId());
         if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
 
-        return documentRepository.Get(documentIdResult.getEntity()).getEntity();
+        return documentRepository.get(documentIdResult.getEntity()).getEntity();
     }
 
     public Document DeleteDocument(DeleteDocumentCommand command) {
-        ValidationResult<DocumentId> documentIdResult = DocumentId.Create(command.getDocumentId());
+        ValidationResult<DocumentId> documentIdResult = DocumentId.create(command.getDocumentId());
         if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
 
-        Document document = documentRepository.Get(documentIdResult.getEntity()).getEntity();
+        Document document = documentRepository.get(documentIdResult.getEntity()).getEntity();
 
         ValidationResult<Document> deleteResult = document.delete();
-        var result = documentRepository.Save(deleteResult.getEntity());
+        var result = documentRepository.save(deleteResult.getEntity());
         return result.getEntity();
     }
 }
