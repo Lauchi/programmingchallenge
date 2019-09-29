@@ -1,9 +1,6 @@
 package adapters.http;
 
-import application.documents.CreateDocumentCommand;
-import application.documents.DocumentService;
-import application.documents.GetDocumentCommand;
-import application.documents.UpdateDocumentCommand;
+import application.documents.*;
 import domain.documents.Document;
 import domain.documents.DocumentId;
 
@@ -59,7 +56,17 @@ public class DocumentController extends HttpServlet {
         UpdateDocumentCommand command = new UpdateDocumentCommand(documentIdRaw, documentContent, documentTypeRaw);
         documentService.UpdateDocument(command);
 
-        response.setContentType("text/html");
+        response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+    }
+
+    public void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String documentIdRaw = getDocumentIDRaw(request);
+
+        DeleteDocumentCommand command = new DeleteDocumentCommand(documentIdRaw);
+        documentService.DeleteDocument(command);
+
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 

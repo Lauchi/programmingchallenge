@@ -1,5 +1,6 @@
 package application.documents;
 
+import domain.RepositoryResult;
 import domain.ValidationResult;
 import domain.documents.Document;
 import domain.documents.DocumentId;
@@ -39,5 +40,16 @@ public class DocumentService {
         if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
 
         return documentRepository.Get(documentIdResult.getEntity()).getEntity();
+    }
+
+    public Document DeleteDocument(DeleteDocumentCommand command) {
+        ValidationResult<DocumentId> documentIdResult = DocumentId.Create(command.getDocumentId());
+        if (documentIdResult.failed()) throw new NotFoundException(command.getDocumentId());
+
+        Document document = documentRepository.Get(documentIdResult.getEntity()).getEntity();
+
+        document.delete();
+        var result = documentRepository.Delete(documentIdResult.getEntity());
+        return result.getEntity();
     }
 }

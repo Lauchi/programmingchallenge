@@ -10,4 +10,8 @@ public class DocumentErrors {
     public static DomainError DocumentIdHasToBeA20CharacterAlphanumericString() {
         return new DomainError("DocumentIdHasToBeA20CharacterAlphanumericString");
     }
+
+    public static DomainError CanNotUpdateDeletedDocument() {
+        return new DomainError("CanNotUpdateDeletedDocument");
+    }
 }
