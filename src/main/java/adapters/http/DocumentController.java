@@ -2,7 +2,9 @@ package adapters.http;
 
 import application.CreateDocumentCommand;
 import application.DocumentService;
+import application.GetDocumentCommand;
 import application.UpdateDocumentCommand;
+import domain.documents.Document;
 import domain.documents.DocumentId;
 
 import java.io.*;
@@ -27,9 +29,24 @@ public class DocumentController extends HttpServlet {
         DocumentId id = documentService.CreateDocument(command);
 
         response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
         response.setStatus(HttpServletResponse.SC_CREATED);
+
+        PrintWriter writer = response.getWriter();
         writer.println(id.getDocumentId());
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String documentIdRaw = getDocumentIDRaw(request);
+
+        GetDocumentCommand command = new GetDocumentCommand(documentIdRaw);
+        Document document = documentService.GetDocument(command);
+
+        response.setContentType(document.getDocumentType().getDocumentType());
+
+        PrintWriter writer = response.getWriter();
+        writer.println(document.getContent());
     }
 
     public void doPut(HttpServletRequest request, HttpServletResponse response)

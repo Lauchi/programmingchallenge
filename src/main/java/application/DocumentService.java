@@ -29,4 +29,9 @@ public class DocumentService {
         Document documentUpdated = documentValidationResult.getEntity();
         documentRepository.Save(documentUpdated);
     }
+
+    public Document GetDocument(GetDocumentCommand command) {
+        DocumentId documentId = DocumentId.Create(command.getDocumentId()).getEntity();
+        return documentRepository.Get(documentId);
+    }
 }
