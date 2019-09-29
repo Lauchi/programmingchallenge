@@ -5,8 +5,10 @@ import domain.documents.Document;
 
 import java.io.*;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+@WebServlet("/storage/documents")
 public class DocumentController extends HttpServlet {
     private DocumentService documentService;
 

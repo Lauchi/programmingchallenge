@@ -3,19 +3,27 @@ package application;
 import adapters.persistence.memory.DocumentRepositoryImpl;
 import application.documents.CreateDocumentCommand;
 import application.documents.DocumentService;
+import application.documents.UpdateDocumentCommand;
 import domain.ConflictException;
 import domain.documents.Document;
 import domain.documents.DocumentHelpers;
 import domain.documents.DocumentId;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.ws.rs.NotFoundException;
+
 class DocumentServiceTest {
+    private DocumentService documentService;
+
+    @BeforeEach
+    public void Setup() {
+        documentService = new DocumentService(new DocumentRepositoryImpl());
+    }
 
     @Test
     void createDocument() {
-        DocumentService documentService = new DocumentService(new DocumentRepositoryImpl());
-
         DocumentId documentIdInput = DocumentHelpers.ValidDocumentId();
         CreateDocumentCommand command = new CreateDocumentCommand(
                 documentIdInput.getDocumentId(),
@@ -28,8 +36,6 @@ class DocumentServiceTest {
 
     @Test
     void createDocumentTwice() {
-        DocumentService documentService = new DocumentService(new DocumentRepositoryImpl());
-
         DocumentId documentIdInput = DocumentHelpers.ValidDocumentId();
         CreateDocumentCommand command = new CreateDocumentCommand(
                 documentIdInput.getDocumentId(),
@@ -42,7 +48,13 @@ class DocumentServiceTest {
     }
 
     @Test
-    void updateDocument() {
+    void updateDocument_NotFound() {
+        DocumentId documentIdInput = DocumentHelpers.ValidDocumentId();
+        UpdateDocumentCommand command = new UpdateDocumentCommand(
+                documentIdInput.getDocumentId(),
+                "newContent",
+                DocumentHelpers.ValidDocumentType().getDocumentType());
 
+        Assertions.assertThrows(NotFoundException.class, () -> documentService.UpdateDocument(command));
     }
 }
