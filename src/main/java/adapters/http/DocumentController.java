@@ -39,8 +39,8 @@ public class DocumentController extends HttpServlet {
 
         String documentIdRaw = getDocumentIDRaw(request);
 
-        GetDocumentQuerry command = new GetDocumentQuerry(documentIdRaw);
-        Document document = documentService.GetDocument(command);
+        GetDocumentQuerry querry = new GetDocumentQuerry(documentIdRaw);
+        Document document = documentService.GetDocument(querry);
 
         response.setContentType(document.getDocumentType().getDocumentType());
 

@@ -76,4 +76,11 @@ class DocumentTests {
         ValidationResult<DocumentType> pdf = DocumentType.create("");
         Assertions.assertEquals(pdf.getError().getErrorKey(), "DocumentTypeCanNotBeNullOrEmpty");
     }
+
+    @Test
+    public void testDeletDocument() {
+        Document document = DocumentHelpers.ValidDocument();
+        ValidationResult<Document> result = document.delete();
+        Assertions.assertTrue(result.getEntity().isDeleted());
+    }
 }
