@@ -19,7 +19,6 @@ public class DocumentService {
     public Document CreateDocument(CreateDocumentCommand command) {
         DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
         DocumentId documentId = DocumentId.create(command.getDocumentId()).getEntity();
-
         Document document = Document.create(documentId, command.getContent(), documentType).getEntity();
 
         RepositoryResult<Document> result = documentRepository.insert(document);
@@ -28,9 +27,8 @@ public class DocumentService {
 
     public void UpdateDocument(UpdateDocumentCommand command) {
         DocumentId documentId = parseDocumentIdAndThrowIfInvalid(command.getDocumentId());
-
-        Document document = documentRepository.get(documentId).getEntity();
         DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
+        Document document = documentRepository.get(documentId).getEntity();
 
         ValidationResult<Document> documentValidationResult = document.updateDocument(command.getDocumentContent(), documentType);
 
@@ -46,10 +44,10 @@ public class DocumentService {
 
     public Document DeleteDocument(DeleteDocumentCommand command) {
         DocumentId documentId = parseDocumentIdAndThrowIfInvalid(command.getDocumentId());
-
         Document document = documentRepository.get(documentId).getEntity();
 
         ValidationResult<Document> deleteResult = document.delete();
+
         var result = documentRepository.insert(deleteResult.getEntity());
         return result.getEntity();
     }
