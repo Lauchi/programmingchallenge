@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="logmein">
+    <output-path>$PROJECT_DIR$/out/artifacts/logmein</output-path>
+    <root id="root" />
+  </artifact>
+</component>

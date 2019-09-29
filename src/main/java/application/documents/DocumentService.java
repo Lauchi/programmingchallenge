@@ -7,14 +7,13 @@ import domain.documents.DocumentId;
 import domain.documents.DocumentRepository;
 import domain.documents.DocumentType;
 
+import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 public class DocumentService {
-    private DocumentRepository documentRepository;
 
-    public DocumentService(DocumentRepository documentRepository) {
-        this.documentRepository = documentRepository;
-    }
+    @Inject
+    private DocumentRepository documentRepository;
 
     public Document CreateDocument(CreateDocumentCommand command) {
         DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
@@ -48,7 +47,7 @@ public class DocumentService {
 
         ValidationResult<Document> deleteResult = document.delete();
 
-        var result = documentRepository.insert(deleteResult.getEntity());
+        RepositoryResult<Document> result = documentRepository.insert(deleteResult.getEntity());
         return result.getEntity();
     }
 

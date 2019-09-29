@@ -4,16 +4,15 @@ import application.documents.*;
 import domain.documents.Document;
 
 import java.io.*;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/storage/documents/*")
+@WebServlet(urlPatterns = {"/storage/documents/*"})
 public class DocumentController extends HttpServlet {
-    private DocumentService documentService;
 
-    DocumentController(DocumentService documentService) {
-        this.documentService = documentService;
-    }
+    @Inject
+    private DocumentService documentService;
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
