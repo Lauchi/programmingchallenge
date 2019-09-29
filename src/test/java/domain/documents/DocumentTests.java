@@ -10,9 +10,13 @@ class DocumentTests {
 
     @Test
     public void testCreateDocument() {
-        DocumentType pdf = DocumentType.Create("pdf").getEntity();
-        DocumentId id = DocumentId.Create("12345678901234567890").getEntity();
-        Document.Create(id, "Content von body", pdf);
+        DocumentType pdf = DocumentHelpers.ValidDocumentType();
+        DocumentId id = DocumentHelpers.ValidDocumentId();
+        String content = "Content von body";
+        ValidationResult<Document> document = Document.Create(id, content, pdf);
+
+        Assertions.assertTrue(document.suceeded());
+        Assertions.assertEquals(content, document.getEntity().getContent());
     }
 
     @Test
@@ -34,6 +38,26 @@ class DocumentTests {
         String documentIdRaw = "123456789012345678901";
         ValidationResult<DocumentId> result = DocumentId.Create(documentIdRaw);
         Assertions.assertEquals(DocumentErrors.DocumentIdHasToBeA20CharacterAlphanumericString().getErrorKey(), result.getError().getErrorKey());
+    }
+
+    @Test
+    public void DocumentIdEquals() {
+        String documentIdRaw = "12345678901234567890";
+
+        DocumentId id1 = DocumentId.Create(documentIdRaw).getEntity();
+        DocumentId id2 = DocumentId.Create(documentIdRaw).getEntity();
+
+        Assertions.assertTrue(id1.equals(id2));
+    }
+
+    @Test
+    public void DocumentTypeEquals() {
+        String documentType = "pdf";
+
+        DocumentType documentType1 = DocumentType.Create(documentType).getEntity();
+        DocumentType documentType2 = DocumentType.Create(documentType).getEntity();
+
+        Assertions.assertTrue(documentType1.equals(documentType2));
     }
 
     @Test

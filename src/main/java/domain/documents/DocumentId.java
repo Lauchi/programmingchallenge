@@ -26,4 +26,11 @@ public class DocumentId {
     public String getDocumentId() {
         return documentId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != DocumentId.class) return false;
+        DocumentId documentIdParsed = (DocumentId) obj;
+        return documentIdParsed.getDocumentId().equals(documentId);
+    }
 }

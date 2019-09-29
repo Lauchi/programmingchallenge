@@ -29,4 +29,8 @@ public class Document {
     public DocumentType getDocumentType() {
         return documentType;
     }
+
+    public ValidationResult<Document> updateDocument(String documentContent, DocumentType documentType) {
+        return new ValidationResult(new Document(documentId, documentContent, documentType));
+    }
 }

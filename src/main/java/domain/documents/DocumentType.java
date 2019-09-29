@@ -17,4 +17,11 @@ public class DocumentType {
     public String getDocumentType() {
         return documentType;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != DocumentType.class) return false;
+        DocumentType documentTypeParsed = (DocumentType) obj;
+        return documentTypeParsed.getDocumentType().equals(documentType);
+    }
 }
