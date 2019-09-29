@@ -13,9 +13,9 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     private List<Document> documents = new ArrayList<>();
 
     @Override
-    public RepositoryResult<Document> save(Document document) {
-        RepositoryResult<Document> get = get(document.getDocumentId());
-        if (!get.isNotFound()) {
+    public RepositoryResult<Document> insert(Document document) {
+        RepositoryResult<Document> result = get(document.getDocumentId());
+        if (!result.isNotFound()) {
             return new RepositoryResult<>(RepositoryStatus.allreadyExists);
         }
 
@@ -32,5 +32,16 @@ public class DocumentRepositoryImpl implements DocumentRepository {
         }
 
         return new RepositoryResult<>(RepositoryStatus.notFound);
+    }
+
+    @Override
+    public RepositoryResult<Document> update(Document document) {
+        RepositoryResult<Document> result = get(document.getDocumentId());
+        if (result.isNotFound()) return result;
+
+        documents.remove(result.getEntity());
+        documents.add(document);
+
+        return new RepositoryResult<>(document);
     }
 }

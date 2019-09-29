@@ -16,7 +16,7 @@ public class Document {
     }
 
     public static ValidationResult<Document> create(DocumentId documentId, String content, DocumentType documentType) {
-        ValidationResult<Document> documentValidationResult = new ValidationResult<>(new Document(documentId, content, documentType, true));
+        ValidationResult<Document> documentValidationResult = new ValidationResult<>(ActiveDocument(documentId, content, documentType));
         return documentValidationResult;
     }
 

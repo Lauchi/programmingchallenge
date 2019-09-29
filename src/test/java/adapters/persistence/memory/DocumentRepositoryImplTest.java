@@ -12,7 +12,7 @@ class DocumentRepositoryImplTest {
     void saveAndGet() {
         DocumentRepositoryImpl documentRepository = new DocumentRepositoryImpl();
         Document document = DocumentHelpers.ValidDocument();
-        documentRepository.save(document);
+        documentRepository.insert(document);
         Document result = documentRepository.get(document.getDocumentId()).getEntity();
 
         Assertions.assertEquals(document.getDocumentId(), result.getDocumentId());
@@ -24,9 +24,45 @@ class DocumentRepositoryImplTest {
     void saveAndGet_NotFoundForDeletedDocument() {
         DocumentRepositoryImpl documentRepository = new DocumentRepositoryImpl();
         Document document = DocumentHelpers.DeletedDocument();
-        documentRepository.save(document);
+        documentRepository.insert(document);
         RepositoryResult<Document> result = documentRepository.get(document.getDocumentId());
 
         Assertions.assertTrue(result.isNotFound());
+    }
+
+    @Test
+    void saveAndGet_InsertTwice() {
+        DocumentRepositoryImpl documentRepository = new DocumentRepositoryImpl();
+        Document document = DocumentHelpers.ValidDocument();
+
+        documentRepository.insert(document);
+        RepositoryResult<Document> result = documentRepository.insert(document);
+
+        Assertions.assertTrue(result.isAllreadyExisting());
+    }
+
+    @Test
+    void update_NotFound() {
+        DocumentRepositoryImpl documentRepository = new DocumentRepositoryImpl();
+        Document document = DocumentHelpers.ValidDocument();
+
+        RepositoryResult<Document> result = documentRepository.update(document);
+
+        Assertions.assertTrue(result.isNotFound());
+    }
+
+    @Test
+    void update_happyPath() {
+        DocumentRepositoryImpl documentRepository = new DocumentRepositoryImpl();
+        Document documentOld = DocumentHelpers.ValidDocument();
+        String newContent = "New Content";
+        Document documentNew = DocumentHelpers.ValidDocumentWithContent(newContent);
+
+        documentRepository.insert(documentOld);
+        documentRepository.update(documentNew);
+
+        Document result = documentRepository.get(documentNew.getDocumentId()).getEntity();
+
+        Assertions.assertEquals(result.getContent(), newContent);
     }
 }

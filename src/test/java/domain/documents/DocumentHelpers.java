@@ -16,6 +16,10 @@ public class DocumentHelpers {
         return Document.create(ValidDocumentId(), "Random Content", ValidDocumentType()).getEntity();
     }
 
+    public static Document ValidDocumentWithContent(String newContent) {
+        return Document.create(ValidDocumentId(), newContent, ValidDocumentType()).getEntity();
+    }
+
     public static Document DeletedDocument() {
         Document document = ValidDocument();
         ValidationResult<Document> deleteResult = document.delete();

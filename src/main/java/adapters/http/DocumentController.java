@@ -2,7 +2,6 @@ package adapters.http;
 
 import application.documents.*;
 import domain.documents.Document;
-import domain.documents.DocumentId;
 
 import java.io.*;
 import javax.servlet.*;
@@ -23,13 +22,13 @@ public class DocumentController extends HttpServlet {
         String documentContent = getDocumentContent(request);
 
         CreateDocumentCommand command = new CreateDocumentCommand(documentIdRaw, documentContent, documentTypeRaw);
-        DocumentId id = documentService.CreateDocument(command);
+        Document document = documentService.CreateDocument(command);
 
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_CREATED);
 
         PrintWriter writer = response.getWriter();
-        writer.println(id.getDocumentId());
+        writer.println(document.getDocumentId().getDocumentId());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)

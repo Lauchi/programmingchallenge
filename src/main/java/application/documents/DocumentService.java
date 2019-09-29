@@ -1,5 +1,6 @@
 package application.documents;
 
+import domain.RepositoryResult;
 import domain.ValidationResult;
 import domain.documents.Document;
 import domain.documents.DocumentId;
@@ -15,12 +16,12 @@ public class DocumentService {
         this.documentRepository = documentRepository;
     }
 
-    public DocumentId CreateDocument(CreateDocumentCommand command) {
+    public Document CreateDocument(CreateDocumentCommand command) {
         DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
         DocumentId documentId = DocumentId.create(command.getDocumentId()).getEntity();
         Document document = Document.create(documentId, command.getContent(), documentType).getEntity();
-        documentRepository.save(document);
-        return document.getDocumentId();
+        RepositoryResult<Document> result = documentRepository.insert(document);
+        return result.getEntity();
     }
 
     public void UpdateDocument(UpdateDocumentCommand command) {
@@ -31,7 +32,7 @@ public class DocumentService {
         DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
         ValidationResult<Document> documentValidationResult = document.updateDocument(command.getDocumentContent(), documentType);
         Document documentUpdated = documentValidationResult.getEntity();
-        documentRepository.save(documentUpdated);
+        documentRepository.update(documentUpdated);
     }
 
     public Document GetDocument(GetDocumentCommand command) {
@@ -48,7 +49,7 @@ public class DocumentService {
         Document document = documentRepository.get(documentIdResult.getEntity()).getEntity();
 
         ValidationResult<Document> deleteResult = document.delete();
-        var result = documentRepository.save(deleteResult.getEntity());
+        var result = documentRepository.insert(deleteResult.getEntity());
         return result.getEntity();
     }
 }

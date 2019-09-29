@@ -5,6 +5,7 @@ import domain.documents.Document;
 import domain.documents.DocumentId;
 
 public interface DocumentRepository {
-    RepositoryResult<Document> save(Document document);
+    RepositoryResult<Document> insert(Document document);
     RepositoryResult<Document> get(DocumentId documentId);
+    RepositoryResult<Document> update(Document document);
 }
