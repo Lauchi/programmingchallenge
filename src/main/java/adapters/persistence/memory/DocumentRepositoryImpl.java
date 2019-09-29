@@ -33,12 +33,4 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 
         return new RepositoryResult<>(RepositoryStatus.notFound);
     }
-
-    @Override
-    public RepositoryResult<Document> Delete(DocumentId documentId) {
-        RepositoryResult<Document> result = Get(documentId);
-        Document document = result.getEntity();
-        documents.remove(document);
-        return new RepositoryResult<>(document);
-    }
 }

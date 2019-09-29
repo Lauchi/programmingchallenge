@@ -48,8 +48,8 @@ public class DocumentService {
 
         Document document = documentRepository.Get(documentIdResult.getEntity()).getEntity();
 
-        document.delete();
-        var result = documentRepository.Delete(documentIdResult.getEntity());
+        ValidationResult<Document> deleteResult = document.delete();
+        var result = documentRepository.Save(deleteResult.getEntity());
         return result.getEntity();
     }
 }

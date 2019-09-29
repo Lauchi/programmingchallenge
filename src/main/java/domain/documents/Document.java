@@ -32,6 +32,8 @@ public class Document {
         return documentType;
     }
 
+    public boolean isDeleted() { return isDeleted; }
+
     public ValidationResult<Document> updateDocument(String documentContent, DocumentType documentType) {
         if (isDeleted) return new ValidationResult<>(DocumentErrors.CanNotUpdateDeletedDocument());
         return new ValidationResult(Document.ActiveDocument(documentId, documentContent, documentType));
