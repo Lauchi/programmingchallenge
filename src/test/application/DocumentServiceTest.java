@@ -17,7 +17,7 @@ import javax.ws.rs.NotFoundException;
 class DocumentServiceTest {
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         documentService = new DocumentService(new DocumentRepositoryImpl());
     }
 

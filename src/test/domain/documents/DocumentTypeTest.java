@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class DocumentTypeTest {
 
     @Test
-    void DocumentTypeEquals() {
+    public void DocumentTypeEquals() {
         String documentType = "pdf";
 
         DocumentType documentType1 = DocumentType.create(documentType).getEntity();
@@ -17,13 +17,13 @@ class DocumentTypeTest {
     }
 
     @Test
-    void testCreateDocumentNullType() {
+    public void testCreateDocumentNullType() {
         ValidationResult<DocumentType> pdf = DocumentType.create(null);
         Assertions.assertEquals(pdf.getError().getErrorKey(), "DocumentTypeCanNotBeNullOrEmpty");
     }
 
     @Test
-    void testCreateDocumentEmpty() {
+    public void testCreateDocumentEmpty() {
         ValidationResult<DocumentType> pdf = DocumentType.create("");
         Assertions.assertEquals(pdf.getError().getErrorKey(), "DocumentTypeCanNotBeNullOrEmpty");
     }
