@@ -1,5 +1,6 @@
 package application;
 
+import adapters.persistence.memory.DocumentRepositoryImpl;
 import application.documents.CreateDocumentCommand;
 import application.documents.DocumentService;
 import application.documents.UpdateDocumentCommand;
@@ -8,14 +9,18 @@ import domain.documents.Document;
 import domain.documents.DocumentHelpers;
 import domain.documents.DocumentId;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 class DocumentServiceTest {
 
-    @Inject
+    @BeforeEach
+    public void setUp() {
+        documentService = new DocumentService(new DocumentRepositoryImpl());
+    }
+
     private DocumentService documentService;
 
     @Test
