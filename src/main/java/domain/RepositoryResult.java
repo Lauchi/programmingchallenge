@@ -1,6 +1,5 @@
 package domain;
 
-import javax.validation.ValidationException;
 import javax.ws.rs.NotFoundException;
 
 public class RepositoryResult<T> {
@@ -22,7 +21,7 @@ public class RepositoryResult<T> {
         return status == RepositoryStatus.ok;
     }
 
-    public T getEntity() throws ValidationException {
+    public T getEntity() throws ConflictException, NotFoundException {
         switch (status) {
             case allreadyExists : throw new ConflictException();
             case notFound : throw new NotFoundException();
