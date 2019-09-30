@@ -1,5 +1,6 @@
 package domain;
 
+
 import javax.validation.ValidationException;
 
 public class ValidationResult<T> {

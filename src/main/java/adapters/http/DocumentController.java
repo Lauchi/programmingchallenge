@@ -3,10 +3,14 @@ package adapters.http;
 import application.documents.*;
 import domain.documents.Document;
 
-import java.io.*;
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/storage/documents/*")
 public class DocumentController extends HttpServlet {

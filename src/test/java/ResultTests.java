@@ -1,6 +1,6 @@
+import domain.*;
 import domain.ConflictException;
 import domain.RepositoryResult;
-import domain.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

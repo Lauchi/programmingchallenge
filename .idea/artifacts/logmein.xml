@@ -2,7 +2,11 @@
   <artifact type="exploded-war" build-on-make="true" name="logmein">
     <output-path>$PROJECT_DIR$/out/artifacts/logmein</output-path>
     <root id="root">
-      <element id="module-output" name="programmingchallenge" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="com.logemein.programmingchallenge" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
