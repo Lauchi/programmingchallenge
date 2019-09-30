@@ -91,7 +91,8 @@ public class DocumentController extends HttpServlet {
     }
 
     private String getDocumentIDRaw(HttpServletRequest request) {
-        String documentIdRaw = request.getPathInfo();
-        return request.getParameter(documentIdRaw);
+        String[] split = request.getPathInfo().split("/");
+        String documentIdRaw = split[split.length - 1];
+        return documentIdRaw;
     }
 }
