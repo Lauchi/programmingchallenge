@@ -60,7 +60,7 @@ public class DocumentService {
 
         ValidationResult<Document> deleteResult = document.delete();
 
-        RepositoryResult<Document> result = documentRepository.insert(deleteResult.getEntity());
+        RepositoryResult<Document> result = documentRepository.update(deleteResult.getEntity());
         return result.getEntity();
     }
 

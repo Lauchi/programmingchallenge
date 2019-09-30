@@ -7,6 +7,13 @@
           <element id="module-output" name="com.logemein.programmingchallenge" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/beans.xml" />
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Maven: javax:javaee-api:8.0.1" />
+          <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.1.0" />
+        </element>
       </element>
     </root>
   </artifact>
