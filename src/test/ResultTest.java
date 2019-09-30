@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 import javax.validation.ValidationException;
 import javax.ws.rs.NotFoundException;
 
-public class ResultTests {
+class ResultTest {
 
     @Test
-    public void createResult() {
+    void createResult() {
         ValidationResult validationResult = new ValidationResult(new DomainError("SomethingBad"));
         Assertions.assertEquals(true, validationResult.failed());
     }
 
     @Test
-    public void createResult_exceptionOnError() {
+    void createResult_exceptionOnError() {
         ValidationResult validationResult = new ValidationResult(new DomainError("SomethingBad"));
         Assertions.assertThrows(ValidationException.class, () -> validationResult.getEntity());
     }
 
     @Test
-    public void notFoundResult() {
+    void notFoundResult() {
         RepositoryResult<DummyClass> result = new RepositoryResult<>(RepositoryStatus.notFound);
 
         Assertions.assertTrue(result.failed());
@@ -31,7 +31,7 @@ public class ResultTests {
     }
 
     @Test
-    public void allreadyExistsResult() {
+    void allreadyExistsResult() {
         RepositoryResult<DummyClass> result = new RepositoryResult<>(RepositoryStatus.allreadyExists);
 
         Assertions.assertTrue(result.failed());
@@ -40,7 +40,7 @@ public class ResultTests {
     }
 
     @Test
-    public void resultIsFound() {
+    void resultIsFound() {
         RepositoryResult<DummyClass> result = new RepositoryResult<>(new DummyClass());
 
         Assertions.assertTrue(result.suceeded());

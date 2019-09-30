@@ -7,21 +7,21 @@ import org.junit.jupiter.api.Test;
 class DocumentIdTest {
 
     @Test
-    public void testCreateDocumentId() {
+    void testCreateDocumentId() {
         String documentIdRaw = "12345678901234567890";
         DocumentId id = DocumentId.create(documentIdRaw).getEntity();
         Assertions.assertEquals(documentIdRaw, id.getDocumentId());
     }
 
     @Test
-    public void testCreateDocumentId_tooShort() {
+    void testCreateDocumentId_tooShort() {
         String documentIdRaw = "1234567890123456789";
         ValidationResult<DocumentId> result = DocumentId.create(documentIdRaw);
         Assertions.assertEquals(DocumentErrors.DocumentIdHasToBeA20CharacterAlphanumericString().getErrorKey(), result.getError().getErrorKey());
     }
 
     @Test
-    public void testCreateDocumentId_tooBig() {
+    void testCreateDocumentId_tooBig() {
         String documentIdRaw = "123456789012345678901";
         ValidationResult<DocumentId> result = DocumentId.create(documentIdRaw);
         Assertions.assertEquals(DocumentErrors.DocumentIdHasToBeA20CharacterAlphanumericString().getErrorKey(), result.getError().getErrorKey());
@@ -29,14 +29,14 @@ class DocumentIdTest {
 
 
     @Test
-    public void testCreateDocumentId_InvalidCharactes() {
+    void testCreateDocumentId_InvalidCharactes() {
         String documentIdRaw = "12345678901/34567-90";
         ValidationResult<DocumentId> result = DocumentId.create(documentIdRaw);
         Assertions.assertEquals(DocumentErrors.DocumentIdHasToBeA20CharacterAlphanumericString().getErrorKey(), result.getError().getErrorKey());
     }
 
     @Test
-    public void DocumentIdEquals() {
+    void DocumentIdEquals() {
         String documentIdRaw = "12345678901234567890";
 
         DocumentId id1 = DocumentId.create(documentIdRaw).getEntity();
