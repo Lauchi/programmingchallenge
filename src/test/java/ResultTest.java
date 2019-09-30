@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import javax.validation.ValidationException;
 import javax.ws.rs.NotFoundException;
 
-public class ResultTests {
+public class ResultTest {
 
     @Test
     public void createResult() {
