@@ -6,6 +6,7 @@
         <element id="directory" name="classes">
           <element id="module-output" name="com.logemein.programmingchallenge" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/beans.xml" />
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />

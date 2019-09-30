@@ -4,7 +4,7 @@ import domain.ValidationResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class DocumentTest {
+class DocumentTests {
 
     @Test
     public void testCreateDocument() {
