@@ -1,4 +1,4 @@
-package adapters.http;
+package adapters.http.exceptionfilters;
 
 import domain.ConflictException;
 

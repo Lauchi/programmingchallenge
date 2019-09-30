@@ -1,4 +1,4 @@
-package adapters.http;
+package adapters.http.exceptionfilters;
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
