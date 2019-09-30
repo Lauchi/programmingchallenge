@@ -9,7 +9,6 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
-          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: javax:javaee-api:8.0.1" />
           <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.1.0" />
           <element id="library" level="project" name="Maven: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b34" />
@@ -23,6 +22,8 @@
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
           <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.2" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/context.xml" />
       </element>
     </root>
   </artifact>

@@ -3,10 +3,12 @@ package adapters.http;
 import application.documents.*;
 import domain.documents.Document;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Context;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,14 +16,18 @@ import java.io.PrintWriter;
 @WebServlet("/storage/documents/*")
 public class DocumentController extends HttpServlet {
 
-    private DocumentService documentService = DocumentService.getInstance();
+    @Inject
+    private DocumentService documentService;
+
+    @Context
+    private HttpServletRequest httpRequest;
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        String documentIdRaw = getDocumentIDRaw(request);
-        String documentTypeRaw = getDocumentTypeRaw(request);
+        String documentIdRaw = getDocumentIDRaw(httpRequest);
+        String documentTypeRaw = getDocumentTypeRaw(httpRequest);
         String documentContent = getDocumentContent(request);
 
         CreateDocumentCommand command = new CreateDocumentCommand(documentIdRaw, documentContent, documentTypeRaw);
