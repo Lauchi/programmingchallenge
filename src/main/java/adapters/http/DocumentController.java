@@ -3,7 +3,6 @@ package adapters.http;
 import application.documents.*;
 import domain.documents.Document;
 
-import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,7 @@ import java.io.PrintWriter;
 @WebServlet("/storage/documents/*")
 public class DocumentController extends HttpServlet {
 
-    @Inject
-    private DocumentService documentService;
+    private DocumentService documentService = DocumentService.getInstance();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,5 +1,6 @@
 package application.documents;
 
+import adapters.persistence.memory.DocumentRepositoryImpl;
 import domain.RepositoryResult;
 import domain.ValidationResult;
 import domain.documents.Document;
@@ -12,8 +13,20 @@ import javax.ws.rs.NotFoundException;
 
 public class DocumentService {
 
-    @Inject
     private DocumentRepository documentRepository;
+
+    @Inject
+    public DocumentService(DocumentRepository documentRepository) {
+        this.documentRepository = documentRepository;
+    }
+
+    private static DocumentService instance;
+    public static synchronized DocumentService getInstance () {
+        if (DocumentService.instance == null) {
+            DocumentService.instance = new DocumentService(new DocumentRepositoryImpl());
+        }
+        return DocumentService.instance;
+    }
 
     public Document CreateDocument(CreateDocumentCommand command) {
         DocumentType documentType = DocumentType.create(command.getDocumentType()).getEntity();
