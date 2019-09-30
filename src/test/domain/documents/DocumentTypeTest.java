@@ -4,7 +4,7 @@ import domain.ValidationResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class DocumentTypeTests {
+class DocumentTypeTest {
 
     @Test
     public void DocumentTypeEquals() {
