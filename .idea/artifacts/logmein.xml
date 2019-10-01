@@ -24,6 +24,8 @@
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/beans.xml" />
         <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/context.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/jboss-web.xml" />
       </element>
       <element id="javaee-facet-resources" facet="com.logemein.programmingchallenge/web/Web" />
     </root>
