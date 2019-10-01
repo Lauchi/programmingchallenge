@@ -1,6 +1,5 @@
 package application.documents;
 
-import adapters.persistence.memory.DocumentRepositoryImpl;
 import domain.RepositoryResult;
 import domain.ValidationResult;
 import domain.documents.Document;
@@ -18,14 +17,6 @@ public class DocumentService {
     @Inject
     public DocumentService(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-    }
-
-    private static DocumentService instance;
-    public static synchronized DocumentService getInstance () {
-        if (DocumentService.instance == null) {
-            DocumentService.instance = new DocumentService(new DocumentRepositoryImpl());
-        }
-        return DocumentService.instance;
     }
 
     public Document CreateDocument(CreateDocumentCommand command) {
