@@ -22,11 +22,11 @@
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
           <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.2" />
         </element>
-        <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/beans.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" />
       </element>
       <element id="javaee-facet-resources" facet="com.logemein.programmingchallenge/web/Web" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/web/META-INF/context.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" />
       </element>
     </root>
   </artifact>
