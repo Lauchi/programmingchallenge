@@ -19,15 +19,12 @@ public class DocumentController extends HttpServlet {
     @Inject
     private DocumentService documentService;
 
-    @Context
-    private HttpServletRequest httpRequest;
-
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        String documentIdRaw = getDocumentIDRaw(httpRequest);
-        String documentTypeRaw = getDocumentTypeRaw(httpRequest);
+        String documentIdRaw = getDocumentIDRaw(request);
+        String documentTypeRaw = getDocumentTypeRaw(request);
         String documentContent = getDocumentContent(request);
 
         CreateDocumentCommand command = new CreateDocumentCommand(documentIdRaw, documentContent, documentTypeRaw);
