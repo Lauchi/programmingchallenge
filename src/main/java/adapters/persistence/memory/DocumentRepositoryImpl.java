@@ -6,9 +6,11 @@ import domain.documents.Document;
 import domain.documents.DocumentId;
 import domain.documents.DocumentRepository;
 
+import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 public class DocumentRepositoryImpl implements DocumentRepository {
     private List<Document> documents = new ArrayList<>();
 
