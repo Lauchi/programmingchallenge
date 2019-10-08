@@ -8,6 +8,10 @@ public class DocumentHelpers {
         return DocumentType.create("pdf").getEntity();
     }
 
+    public static DocumentType AnotherValidDocumentType() {
+        return DocumentType.create("html").getEntity();
+    }
+
     public static DocumentId ValidDocumentId() {
         return DocumentId.create("12345678901234567890").getEntity();
     }
