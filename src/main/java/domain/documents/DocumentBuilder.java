@@ -14,21 +14,21 @@ public class DocumentBuilder {
         documentId = document.getDocumentId();
     }
 
-    public DocumentBuilder WithContent(String documentContent) {
+    public DocumentBuilder withContent(String documentContent) {
         content = documentContent;
         return this;
     }
 
-    public DocumentBuilder WithDocumentType(DocumentType documentType) {
+    public DocumentBuilder withDocumentType(DocumentType documentType) {
         this.documentType = documentType;
         return this;
     }
 
-    public Document Build() {
+    public Document build() {
         return new Document(documentId, content, documentType, deleted);
     }
 
-    public DocumentBuilder WithDeleted(boolean deleted) {
+    public DocumentBuilder withDeleted(boolean deleted) {
         this.deleted = deleted;
         return this;
     }

@@ -39,15 +39,15 @@ public class Document {
         if (isDeleted) return new ValidationResult<>(DocumentErrors.CanNotUpdateDeletedDocument());
         return new ValidationResult(
                 new DocumentBuilder(this)
-                .WithContent(documentContent)
-                .WithDocumentType(documentType)
-                .Build());
+                .withContent(documentContent)
+                .withDocumentType(documentType)
+                .build());
     }
 
     public ValidationResult<Document> delete() {
         return new ValidationResult<>(
                 new DocumentBuilder(this)
-                .WithDeleted(true)
-                .Build());
+                .withDeleted(true)
+                .build());
     }
 }
